@@ -28,16 +28,6 @@
 
 ---
 
-## 📸 **Capturas de Pantalla**
-
-### Formulario para agregar contactos  
-![Formulario para agregar contactos](https://via.placeholder.com/800x400.png?text=Formulario+de+Contactos)
-
-### Listado de contactos con opciones  
-![Listado de contactos](https://via.placeholder.com/800x400.png?text=Listado+de+Contactos)
-
----
-
 ## 🚀 **Cómo Ejecutar el Proyecto**
 
 ### 1️⃣ Clona el Repositorio  
