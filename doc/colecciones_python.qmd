@@ -1,0 +1,291 @@
+---
+title: "Python: Listas, Tuplas, Diccionarios y Conjuntos"
+author: |
+  **INTEGRANTES**:  
+  - Jhon Gustavo Ccarita Velásquez  
+  - Patrick Leguía Choquemamani  
+  - Marcos Vidal Gonzalo Quispe Peña  
+  - André Sebastián Espinoza Zea  
+institute: "Universidad Continental"
+date: "2024-11-29"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    incremental: true
+    transition: fade
+    overflow: visible
+editor: visual
+lang: es
+---
+
+## Introducción
+
+Python ofrece diversas estructuras de datos que son esenciales para organizar y procesar información de manera eficiente.
+
+1. **Listas**: Estructuras ordenadas y mutables.
+2. **Tuplas**: Estructuras inmutables y ordenadas.
+3. **Diccionarios**: Pares clave-valor eficientes.
+4. **Conjuntos**: Colecciones de elementos únicos.
+
+---
+
+## Listas
+
+Las **listas** son colecciones ordenadas y mutables. Son útiles cuando necesitas modificar datos.
+
+### Métodos principales
+
+1. **`append`**: Agregar un elemento al final.
+2. **`insert`**: Insertar en una posición específica.
+3. **`remove`**: Eliminar un elemento por valor.
+4. **`sort`**: Ordenar los elementos.
+5. **Concatenar**: Combinar listas.
+6. **Trocear**: Seleccionar sublistas.
+
+---
+
+### Ejemplo práctico de listas
+
+```python
+mi_lista = [3, 1, 2]
+print("Lista inicial:", mi_lista)
+
+mi_lista.append(4)
+print("Después de append(4):", mi_lista)
+
+mi_lista.insert(1, "nuevo")
+print("Después de insert(1, 'nuevo'):", mi_lista)
+
+mi_lista.remove(3)
+print("Después de remove(3):", mi_lista)
+
+mi_lista.sort()
+print("Después de sort():", mi_lista)
+
+sublista = mi_lista[1:3]
+print("Sublista [1:3]:", sublista)
+
+otra_lista = ["a", "b"]
+resultado = mi_lista + otra_lista
+print("Lista concatenada:", resultado)
+```
+
+## Resultado esperado:
+
+```python
+Lista inicial: [3, 1, 2]
+Después de append(4): [3, 1, 2, 4]
+Después de insert(1, 'nuevo'): [3, 'nuevo', 1, 2, 4]
+Después de remove(3): ['nuevo', 1, 2, 4]
+Después de sort(): [1, 2, 4, 'nuevo']
+Sublista [1:3]: [2, 4]
+Lista concatenada: [1, 2, 4, 'nuevo', 'a', 'b']
+```
+
+---
+
+## Tuplas
+
+Las **tuplas** son colecciones ordenadas e inmutables. Esto significa que una vez creadas, no pueden modificarse.
+
+### Características principales
+
+- **Definición**: Se utilizan paréntesis `()`.
+- **Inmutables**: Sus elementos no pueden cambiar.
+- **Versátiles**: Pueden contener diferentes tipos de datos.
+
+## Ejemplo práctico
+
+```python
+# Definición de la tupla
+mi_tupla = (10, 20, 30, 40, 50, 60)
+
+# Acceder al primer y último elemento
+primer_elemento = mi_tupla[0]  # Índice 0 para el primer elemento
+ultimo_elemento = mi_tupla[-1]  # Índice -1 para el último elemento
+
+# Crear una subtupla con slicing
+sub_tupla = mi_tupla[1:4]  # Elementos desde el índice 1 hasta el 3
+
+# Verificar si un elemento está en la tupla
+es_20 = 20 in mi_tupla  # Verifica si el número 20 está presente
+
+# Contar la cantidad de veces que un elemento aparece en la tupla
+veces_10 = mi_tupla.count(10)  # Cuenta cuántas veces aparece el 10
+
+# Obtener el índice de un elemento específico
+indice_40 = mi_tupla.index(40)  # Encuentra el índice del elemento 40
+
+# Iterar sobre la tupla e imprimir los elementos
+print("Elementos de la tupla:")
+for elemento in mi_tupla:
+    print(elemento)
+
+# Imprimir resultados adicionales
+print(f"Tupla: {mi_tupla}")
+print(f"Primer elemento: {primer_elemento}")
+print(f"Último elemento: {ultimo_elemento}")
+print(f"Subtupla: {sub_tupla}")
+print(f"¿Está el 20 en la tupla?: {es_20}")
+print(f"Cantidad de veces que aparece el 10: {veces_10}")
+print(f"Índice del elemento 40: {indice_40}")
+mi_tupla = (10, 20, 30, 40, 50, 60)
+primer_elemento = mi_tupla[0]
+ultimo_elemento = mi_tupla[-1]
+sub_tupla = mi_tupla[1:4]
+es_20 = 20 in mi_tupla
+
+print(f"Tupla: {mi_tupla}")
+print(f"Primer elemento: {primer_elemento}")
+print(f"Último elemento: {ultimo_elemento}")
+print(f"Subtupla: {sub_tupla}")
+print(f"¿Está el 20 en la tupla?: {es_20}")
+```
+
+## _resultado:_
+
+```python
+Elementos de la tupla:
+10
+20
+30
+40
+50
+60
+Tupla: (10, 20, 30, 40, 50, 60)
+Primer elemento: 10
+Último elemento: 60
+Subtupla: (20, 30, 40)
+¿Está el 20 en la tupla?: True
+Cantidad de veces que aparece el 10: 1
+Índice del elemento 40: 3
+```
+
+---
+
+## Métodos en Tuplas
+
+### Concatenar elementos a una tupla
+
+Las tuplas no tienen `append`. Para agregar elementos, se crean nuevas tuplas:
+
+```python
+mi_tupla = (1, 2, 3)
+mi_tupla = mi_tupla + (4, 5, 6)
+print(f"Tupla concatenada: {mi_tupla}")
+```
+
+### Invertir una tupla
+
+```python
+mi_tupla = (1, 2, 3, 4, 5, 6)
+mi_tupla_invertida = mi_tupla[::-1]
+print(f"Tupla invertida: {mi_tupla_invertida}")
+```
+
+---
+
+## Diccionarios
+
+Los **diccionarios** almacenan información en pares clave-valor.
+
+### Métodos principales
+
+1. **`dict`**: Crear diccionarios.
+2. **`get`**: Obtener valores de claves.
+3. **`keys`**: Devolver las claves.
+4. **`pop`**: Eliminar un par clave-valor.
+5. **`items`**: Ver todos los pares clave-valor.
+
+---
+
+### Ejemplo práctico de diccionarios
+
+```python
+# Crear un diccionario inicial con claves y valores
+mi_dict = {"a": 1, "b": 2, "c": 3}
+
+# Obtener el valor asociado a la clave 'a'
+valor = mi_dict.get("a")
+
+# Eliminar la clave 'b' y su valor
+mi_dict.pop("b")
+
+# Agregar una nueva clave 'd' con su valor
+mi_dict["d"] = 4
+
+# Modificar un valor existente (clave 'c')
+mi_dict["c"] = 10
+
+# Comprobar si una clave está en el diccionario
+existe_clave = "a" in mi_dict
+
+# Obtener todas las claves y valores
+claves = list(mi_dict.keys())
+valores = list(mi_dict.values())
+
+# Imprimir resultados
+print(f"Diccionario actualizado: {mi_dict}")
+print(f"Valor de la clave 'a': {valor}")
+print(f"¿Existe la clave 'a'? {existe_clave}")
+print(f"Claves: {claves}")
+print(f"Valores: {valores}")
+```
+
+_resultado:_
+```python
+Diccionario actualizado: {'a': 1, 'c': 10, 'd': 4}
+Valor de la clave 'a': 1
+¿Existe la clave 'a'? True
+Claves: ['a', 'c', 'd']
+Valores: [1, 10, 4]
+```
+
+
+---
+
+## Conjuntos
+
+Los **conjuntos** almacenan elementos únicos.
+
+### Operaciones principales
+
+1. **`union`**: Combina elementos únicos.
+2. **`intersection`**: Encuentra elementos comunes.
+3. **`difference`**: Encuentra elementos exclusivos de un conjunto.
+4. **`discard`**: Elimina un elemento si existe.
+
+---
+
+### Ejemplo práctico de conjuntos
+
+```python
+mi_set = {1, 2, 3}
+otro_set = {3, 4, 5}
+union = mi_set.union(otro_set)
+interseccion = mi_set.intersection(otro_set)
+diferencia = mi_set.difference(otro_set)
+
+print(f"Unión: {union}")
+print(f"Intersección: {interseccion}")
+print(f"Diferencia: {diferencia}")
+```
+
+_resultado:_
+```python
+Unión: {1, 2, 3, 4, 5}
+Intersección: {3}
+Diferencia: {1, 2}
+```
+
+---
+
+## Resumen
+
+- **Tuplas**: Inmutables, para datos constantes.
+- **Listas**: Mutables, para datos dinámicos.
+- **Diccionarios**: Pares clave-valor.
+- **Conjuntos**: Elementos únicos, ideales para operaciones matemáticas.
+
+## Gracias
