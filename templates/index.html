@@ -3,55 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Environmental Calculator</title>
+    <title>Gestor de Contactos</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-gradient-to-r from-green-100 to-blue-100 min-h-screen flex items-center justify-center p-6">
+<body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex flex-col items-center justify-center">
+    <div class="container mx-auto p-6">
+        <!-- Encabezado -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-gray-800 drop-shadow-md">
+                <i class="fas fa-address-book text-blue-500"></i> Gestor de Contactos
+            </h1>
+            <p class="text-lg text-gray-700 mt-2">Organiza contactos y agrupa intereses fácilmente</p>
+        </header>
 
-    <div class="bg-white rounded-2xl shadow-2xl p-10 max-w-lg w-full">
-        <h1 class="text-3xl font-extrabold text-green-700 mb-8 text-center">Environmental Penalty Calculator</h1>
-        
-        <!-- Input Form -->
-        <form action="/calculate" method="post" class="space-y-6">
-            <div>
-                <label for="category" class="block text-sm font-semibold text-gray-600">Select Category:</label>
-                <select name="category" id="category" class="mt-2 block w-full rounded-md border border-gray-300 bg-gray-50 py-2 px-3 shadow-sm focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-400">
-                    <option value="a">A (50 or less)</option>
-                    <option value="b">B (51-70)</option>
-                    <option value="c">C (71-90)</option>
-                    <option value="d">D (91-110)</option>
-                    <option value="e">E (More than 110)</option>
-                </select>
-            </div>
+        <!-- Formulario para agregar contactos -->
+        <section class="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Agregar Contacto</h2>
+            <form id="agregarContactoForm" class="space-y-6">
+                <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+                    <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Pérez" required
+                        class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono:</label>
+                    <input id="telefono" name="telefono" type="text" placeholder="Ej: 123-456-7890" required
+                        class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+                    <input id="email" name="email" type="email" placeholder="Ej: juan.perez@example.com" required
+                        class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="intereses" class="block text-sm font-medium text-gray-700">Intereses:</label>
+                    <input id="intereses" name="intereses" type="text" placeholder="Ej: Música, Viajes"
+                        class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center gap-2">
+                    <i class="fas fa-user-plus"></i> Agregar Contacto
+                </button>
+            </form>
+        </section>
 
-            <div>
-                <label for="base_amount_usd" class="block text-sm font-semibold text-gray-600">Base Amount in USD:</label>
-                <input type="number" name="base_amount_usd" step="0.01" required class="mt-2 block w-full rounded-md border border-gray-300 bg-gray-50 py-2 px-3 shadow-sm focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-400">
-            </div>
-
-            <div>
-                <label for="exchange_rate" class="block text-sm font-semibold text-gray-600">Exchange Rate (USD to Soles):</label>
-                <input type="number" name="exchange_rate" step="0.01" value="3.77" class="mt-2 block w-full rounded-md border border-gray-300 bg-gray-50 py-2 px-3 shadow-sm focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-400">
-            </div>
-
-            <div>
-                <input type="submit" value="Calculate" class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white py-3 rounded-lg font-semibold hover:from-green-600 hover:to-teal-600 transition-transform transform hover:scale-105 cursor-pointer">
-            </div>
-        </form>
-
-        {% if error %}
-            <div class="mt-4 text-red-500 font-medium text-center">{{ error }}</div>
-        {% endif %}
-
-        {% if category %}
-            <div class="result mt-8 p-6 bg-gray-50 rounded-xl shadow-md">
-                <h3 class="text-xl font-bold text-gray-700">Results for Category {{ category }}:</h3>
-                <p class="text-gray-600 mt-2"><strong>Base amount in Soles:</strong> S/. {{ amount_soles }}</p>
-                <p class="text-gray-600"><strong>Penalty amount:</strong> S/. {{ penalty }}</p>
-                <p class="text-gray-600"><strong>Total amount to pay:</strong> S/. {{ amount_to_pay }}</p>
-            </div>
-        {% endif %}
+        <!-- Listado de contactos -->
+        <section id="contactosListado" class="mt-10 bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Contactos Guardados</h2>
+            <ul id="contactos" class="divide-y divide-gray-200">
+                <!-- Contactos renderizados dinámicamente -->
+            </ul>
+        </section>
     </div>
 
+    <script>
+        const formulario = document.getElementById('agregarContactoForm');
+        const contactosListado = document.getElementById('contactos');
+
+        formulario.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+
+            const formData = new FormData(formulario);
+
+            try {
+                const respuesta = await fetch('/contactos/agregar', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await respuesta.json();
+
+                // Verificar si hay un mensaje o error
+                if (data.mensaje) {
+                    alert(data.mensaje);
+                    cargarContactos(); // Recargar la lista de contactos
+                } else if (data.error) {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert("Ocurrió un error al agregar el contacto.");
+                console.error(error);
+            }
+        });
+
+        // Función para cargar los contactos existentes
+        async function cargarContactos() {
+            try {
+                const respuesta = await fetch('/contactos/listar');
+                const data = await respuesta.json();
+
+                contactosListado.innerHTML = ''; // Limpiar el listado
+                for (const [nombre, contacto] of Object.entries(data.contactos)) {
+                    const li = document.createElement('li');
+                    li.className = "py-4 flex justify-between items-center";
+
+                    li.innerHTML = `
+                        <div class="text-sm text-gray-800">
+                            <p class="font-semibold">${contacto[0]}</p>
+                            <p>${contacto[1]}</p>
+                            <p class="text-gray-500">${contacto[2]}</p>
+                        </div>
+                        <button class="bg-red-500 text-white px-4 py-1 rounded shadow hover:bg-red-600 flex items-center gap-2"
+                            onclick="eliminarContacto('${nombre}')">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    `;
+
+                    contactosListado.appendChild(li);
+                }
+            } catch (error) {
+                alert("Ocurrió un error al cargar los contactos.");
+                console.error(error);
+            }
+        }
+
+        // Función para eliminar un contacto
+        async function eliminarContacto(nombre) {
+            try {
+                const respuesta = await fetch(`/contactos/eliminar/${nombre}`, { method: 'DELETE' });
+                const data = await respuesta.json();
+
+                if (data.mensaje) {
+                    alert(data.mensaje);
+                    cargarContactos();
+                } else if (data.error) {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert("Ocurrió un error al eliminar el contacto.");
+                console.error(error);
+            }
+        }
+
+        // Cargar los contactos al iniciar la página
+        cargarContactos();
+    </script>
 </body>
 </html>
+
