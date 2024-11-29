@@ -289,3 +289,12 @@ Diferencia: {1, 2}
 - **Conjuntos**: Elementos únicos, ideales para operaciones matemáticas.
 
 ## Gracias
+
+- **Grupo:** procastinadores
+
+| **Nombre Completo**            | **Porcentaje de participacion** |
+|--------------------------------|-----------------------|
+| Jhon Gustavo Ccarita Velásquez | 100% |
+| Patrick Leguía Choquemamani    | 100% |
+| Marcos Vidal Gonzalo Quispe Peña | 100% |
+| André Sebastián Espinoza Zea   | 100% |
